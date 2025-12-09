@@ -17,7 +17,7 @@ export function SiteFooter() {
                     <Link href="https://x.com/bridget_amana" target="_blank" className="hover:text-black/80 focus-brutal">Twitter</Link>
                 </div>
                 <p className="text-sm font-medium">
-                    © {new Date().getFullYear()} Bridget Amana. All rights reserved.
+                    © {new Date().getFullYear()} <Link href="https://x.com/bridget_amana" target="_blank" className="underline decoration-2 underline-offset-2 hover:bg-main">Bridget Amana</Link>. MIT License.
                 </p>
             </div>
         </footer>

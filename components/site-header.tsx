@@ -21,7 +21,7 @@ export function SiteHeader() {
                     <Link href="https://github.com/bridgetamana/neobrutal-ui" target="_blank" className="hover:text-black/80  focus-brutal">Github</Link>
                 </nav>
                 <div className="flex items-center gap-4">
-                    <Link href="/docs/components">
+                    <Link href="/docs/components/accordion">
                         <Button className="hidden lg:flex font-bold shadow-brutal hover:bg-main">
                             Explore Components
                         </Button>
@@ -40,7 +40,7 @@ export function SiteHeader() {
                     <nav className="flex flex-col items-center gap-4 py-6 font-medium text-lg">
                         <Link href="/docs" className="hover:text-black/80 focus-brutal" onClick={() => setIsMenuOpen(false)}>Docs</Link>
                         <Link href="https://github.com/bridgetamana/neobrutal-ui" target="_blank" className="hover:text-black/80 focus-brutal" onClick={() => setIsMenuOpen(false)}>GitHub</Link>
-                        <Link href="/docs/components" onClick={() => setIsMenuOpen(false)}>
+                        <Link href="/docs/components/accordion" onClick={() => setIsMenuOpen(false)}>
                             <Button className="font-bold shadow-brutal hover:bg-main">
                                 Explore Components
                             </Button>

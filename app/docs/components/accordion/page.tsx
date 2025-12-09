@@ -96,7 +96,7 @@ export default function AccordionPage() {
             </ComponentPreview>
 
             <div className="space-y-4">
-                <h2 className="text-2xl font-bold border-b-2 border-border pb-2">Installation</h2>
+                <h2 className="text-2xl font-bold border-b-2 border-black pb-2">Installation</h2>
                 <div className="space-y-4">
                     <p>1. Install the Radix UI primitive:</p>
                     <CodeBlock code="npm install @radix-ui/react-accordion" language="bash" />
@@ -107,7 +107,7 @@ export default function AccordionPage() {
             </div>
 
             <div className="space-y-4">
-                <h2 className="text-2xl font-bold border-b-2 border-border pb-2">Usage</h2>
+                <h2 className="text-2xl font-bold border-b-2 border-black pb-2">Usage</h2>
                 <CodeBlock code={`import {
   Accordion,
   AccordionContent,
@@ -127,6 +127,40 @@ export function AccordionDemo() {
     </Accordion>
   )
 }`} />
+            </div>
+
+            <div className="space-y-4">
+                <h2 className="text-2xl font-bold border-b-2 border-black pb-2">Examples</h2>
+
+                <div className="space-y-4">
+                    <h3 className="text-xl font-bold">Multiple Items Open</h3>
+                    <p className="text-neutral-600">Allow multiple items to be open at the same time.</p>
+                    <ComponentPreview code={`<Accordion type="multiple" className="w-full max-w-[400px]">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Item 1</AccordionTrigger>
+    <AccordionContent>Content 1</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>Item 2</AccordionTrigger>
+    <AccordionContent>Content 2</AccordionContent>
+  </AccordionItem>
+</Accordion>`}>
+                        <Accordion type="multiple" className="w-full max-w-[400px]">
+                            <AccordionItem value="item-1">
+                                <AccordionTrigger>Item 1</AccordionTrigger>
+                                <AccordionContent>
+                                    Content 1
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="item-2">
+                                <AccordionTrigger>Item 2</AccordionTrigger>
+                                <AccordionContent>
+                                    Content 2
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
+                    </ComponentPreview>
+                </div>
             </div>
         </div>
     )

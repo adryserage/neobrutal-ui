@@ -76,87 +76,62 @@ export default function ButtonPage() {
             </ComponentPreview>
 
             <div className="space-y-4">
-                <h2 className="text-2xl font-bold border-b-2 border-border pb-2">Variants</h2>
-                <p className="text-neutral-600">
-                    The button component supports 6 variants to suit different use cases and visual hierarchy.
-                </p>
+                <h2 className="text-2xl font-bold border-b-2 border-black pb-2">Installation</h2>
                 <div className="space-y-4">
-                    <div>
-                        <h3 className="font-bold mb-2">Default</h3>
-                        <p className="text-sm text-neutral-600 mb-2">Primary action button with shadow effect and press animation.</p>
-                        <Button variant="default">Default Button</Button>
-                    </div>
-                    <div>
-                        <h3 className="font-bold mb-2">Neutral</h3>
-                        <p className="text-sm text-neutral-600 mb-2">Secondary action button with white background and shadow.</p>
-                        <Button variant="neutral">Neutral Button</Button>
-                    </div>
-                    <div>
-                        <h3 className="font-bold mb-2">Reverse</h3>
-                        <p className="text-sm text-neutral-600 mb-2">Dark button for emphasis on light backgrounds.</p>
-                        <Button variant="reverse">Reverse Button</Button>
-                    </div>
-                    <div>
-                        <h3 className="font-bold mb-2">Outline</h3>
-                        <p className="text-sm text-neutral-600 mb-2">Minimal button with border only, no shadow.</p>
-                        <Button variant="outline">Outline Button</Button>
-                    </div>
-                    <div>
-                        <h3 className="font-bold mb-2">Primary</h3>
-                        <p className="text-sm text-neutral-600 mb-2">Alias for default variant, explicit naming.</p>
-                        <Button variant="primary">Primary Button</Button>
-                    </div>
-                    <div>
-                        <h3 className="font-bold mb-2">No Shadow</h3>
-                        <p className="text-sm text-neutral-600 mb-2">Button without shadow effect (for nested contexts).</p>
-                        <Button variant="noShadow">No Shadow Button</Button>
-                    </div>
+                    <p>Copy the source code into <code className="bg-neutral-200 px-1 py-0.5 rounded">components/ui/button.tsx</code>:</p>
+                    <CodeBlock code={buttonCode} />
                 </div>
             </div>
 
             <div className="space-y-4">
-                <h2 className="text-2xl font-bold border-b-2 border-border pb-2">Sizes</h2>
-                <p className="text-neutral-600">
-                    Choose from 4 sizes depending on context and hierarchy.
-                </p>
-                <div className="flex flex-wrap items-center gap-4">
-                    <Button size="sm">Small</Button>
-                    <Button size="default">Default</Button>
-                    <Button size="lg">Large</Button>
-                    <Button size="icon">🔍</Button>
-                </div>
-            </div>
-
-            <div className="space-y-4">
-                <h2 className="text-2xl font-bold border-b-2 border-border pb-2">Accessibility</h2>
-                <ul className="list-disc list-inside space-y-2 text-neutral-600">
-                    <li><strong>Focus states:</strong> Thick 2px ring with high contrast for keyboard navigation</li>
-                    <li><strong>Disabled:</strong> Proper disabled styling with pointer-events-none</li>
-                    <li><strong>Labels:</strong> Use descriptive button text or aria-label prop</li>
-                    <li><strong>ARIA:</strong> Respects aria-pressed, aria-expanded, and other button attributes</li>
-                </ul>
-            </div>
-
-            <div className="space-y-4">
-                <h2 className="text-2xl font-bold border-b-2 border-border pb-2">Installation</h2>
-                <p className="text-neutral-600 mb-2">Copy the component code into <code className="bg-neutral-200 px-2 py-1 rounded">components/ui/button.tsx</code>:</p>
-                <CodeBlock code={buttonCode} />
-            </div>
-
-            <div className="space-y-4">
-                <h2 className="text-2xl font-bold border-b-2 border-border pb-2">Usage</h2>
+                <h2 className="text-2xl font-bold border-b-2 border-black pb-2">Usage</h2>
                 <CodeBlock code={`import { Button } from "@/components/ui/button"
 
 export function ButtonDemo() {
-  return (
-    <div className="space-y-4">
-      <Button>Click me</Button>
-      <Button variant="neutral">Secondary</Button>
-      <Button size="lg">Large button</Button>
-      <Button disabled>Disabled</Button>
-    </div>
-  )
+  return <Button>Click me</Button>
 }`} />
+            </div>
+
+            <div className="space-y-4">
+                <h2 className="text-2xl font-bold border-b-2 border-black pb-2">Examples</h2>
+
+                <div className="space-y-4">
+                    <h3 className="text-xl font-bold">Variants</h3>
+                    <p className="text-neutral-600">Different styles for different contexts.</p>
+                    <ComponentPreview code={`<div className="flex flex-wrap gap-4">
+  <Button variant="default">Default</Button>
+  <Button variant="neutral">Neutral</Button>
+  <Button variant="reverse">Reverse</Button>
+  <Button variant="outline">Outline</Button>
+  <Button variant="noShadow">No Shadow</Button>
+</div>`}>
+                        <div className="flex flex-wrap gap-4">
+                            <Button variant="default">Default</Button>
+                            <Button variant="neutral">Neutral</Button>
+                            <Button variant="reverse">Reverse</Button>
+                            <Button variant="outline">Outline</Button>
+                            <Button variant="noShadow">No Shadow</Button>
+                        </div>
+                    </ComponentPreview>
+                </div>
+
+                <div className="space-y-4">
+                    <h3 className="text-xl font-bold">Sizes</h3>
+                    <p className="text-neutral-600">Different sizes for different contexts.</p>
+                    <ComponentPreview code={`<div className="flex items-center gap-4">
+  <Button size="sm">Small</Button>
+  <Button size="default">Default</Button>
+  <Button size="lg">Large</Button>
+  <Button size="icon">🔍</Button>
+</div>`}>
+                        <div className="flex flex-wrap items-center gap-4">
+                            <Button size="sm">Small</Button>
+                            <Button size="default">Default</Button>
+                            <Button size="lg">Large</Button>
+                            <Button size="icon">🔍</Button>
+                        </div>
+                    </ComponentPreview>
+                </div>
             </div>
         </div>
     )
