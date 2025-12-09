@@ -4,115 +4,108 @@ import { Avatar, AvatarGroup, AvatarImage, AvatarFallback } from "@/components/u
 import { ComponentPreview } from "@/components/docs/component-preview"
 import { CodeBlock } from "@/components/docs/code-block"
 
-const avatarCode = `import { Avatar, AvatarImage, AvatarFallback, AvatarGroup } from "@/components/ui/avatar"
+const usageCode = `import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 
 export function AvatarDemo() {
   return (
-    <div className="flex gap-4 items-center">
-      {/* Avatar with Image */}
-      <Avatar>
-        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
-
-      {/* Avatar with Fallback */}
-      <Avatar>
-        <AvatarFallback>JD</AvatarFallback>
-      </Avatar>
-
-      {/* Avatar Group */}
-      <AvatarGroup max={3}>
-        <Avatar><AvatarFallback>A</AvatarFallback></Avatar>
-        <Avatar><AvatarFallback>B</AvatarFallback></Avatar>
-        <Avatar><AvatarFallback>C</AvatarFallback></Avatar>
-        <Avatar><AvatarFallback>D</AvatarFallback></Avatar>
-        <Avatar><AvatarFallback>E</AvatarFallback></Avatar>
-      </AvatarGroup>
-    </div>
+    <Avatar>
+      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
   )
 }`
 
-const avatarHtmlCode = `<!-- Avatar with Image -->
-<div class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-black bg-white">
+const htmlCode = `<div class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-black bg-white">
   <img src="https://github.com/shadcn.png" alt="@shadcn" class="aspect-square h-full w-full object-cover" />
 </div>
 
-<!-- Avatar with Fallback (Initials) -->
+<!-- Fallback (when image fails or is missing) -->
 <div class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-black bg-white">
   <div class="flex h-full w-full items-center justify-center rounded-full bg-[#88aaee] text-sm font-bold text-black">
-    JD
-  </div>
-</div>
-
-<!-- Avatar Group (showing 3 + overflow) -->
-<div class="flex items-center -space-x-4">
-  <div class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-black bg-white">
-    <div class="flex h-full w-full items-center justify-center rounded-full bg-[#88aaee] text-sm font-bold text-black">A</div>
-  </div>
-  <div class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-black bg-white">
-    <div class="flex h-full w-full items-center justify-center rounded-full bg-[#88aaee] text-sm font-bold text-black">B</div>
-  </div>
-  <div class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-black bg-white">
-    <div class="flex h-full w-full items-center justify-center rounded-full bg-[#88aaee] text-sm font-bold text-black">C</div>
-  </div>
-  <!-- Overflow indicator -->
-  <div class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-black bg-neutral-200 text-sm font-bold">
-    +2
+    CN
   </div>
 </div>`
 
 export default function AvatarPage() {
     return (
         <div className="space-y-8">
-            <div>
-                <h1 className="text-4xl font-black">Avatar</h1>
-                <p className="mt-2 text-lg text-neutral-600">
-                    Display user profile images with automatic fallback to initials. Includes grouped avatars with overflow indicators.
+            <div className="space-y-2">
+                <h1 className="text-3xl font-black">Avatar</h1>
+                <p className="text-lg text-neutral-600">
+                    An image element with a fallback for representing the user.
                 </p>
             </div>
 
-            <ComponentPreview code={avatarCode} htmlCode={avatarHtmlCode}>
-                <div className="flex gap-4 items-center">
-                    <Avatar>
-                        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                        <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-                    <Avatar>
-                        <AvatarFallback>JD</AvatarFallback>
-                    </Avatar>
-                    <AvatarGroup max={3}>
-                        <Avatar>
-                            <AvatarFallback>A</AvatarFallback>
-                        </Avatar>
-                        <Avatar>
-                            <AvatarFallback>B</AvatarFallback>
-                        </Avatar>
-                        <Avatar>
-                            <AvatarFallback>C</AvatarFallback>
-                        </Avatar>
-                        <Avatar>
-                            <AvatarFallback>D</AvatarFallback>
-                        </Avatar>
-                        <Avatar>
-                            <AvatarFallback>E</AvatarFallback>
-                        </Avatar>
-                    </AvatarGroup>
-                </div>
+            <ComponentPreview code={usageCode} htmlCode={htmlCode}>
+                <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                    <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
             </ComponentPreview>
 
             <div className="space-y-4">
-                <h2 className="text-2xl font-black">Installation</h2>
-                <CodeBlock code={`No dependencies required.`} language="bash" />
+                <h2 className="text-xl font-bold border-b-2 border-black pb-2">Installation</h2>
+                <CodeBlock code="npx neobrutal-ui add avatar" language="bash" />
+                <p className="text-sm text-neutral-600">Or install the dependency and copy the code:</p>
+                <CodeBlock code="npm install @radix-ui/react-avatar" language="bash" />
             </div>
 
             <div className="space-y-4">
-                <h2 className="text-2xl font-black">Accessibility</h2>
-                <ul className="space-y-2 list-disc list-inside font-bold">
-                    <li>Alt text for images</li>
-                    <li>Semantic HTML structure</li>
-                    <li>Sufficient color contrast for initials</li>
-                    <li>Clear visual hierarchy for groups</li>
-                </ul>
+                <h2 className="text-xl font-bold border-b-2 border-black pb-2">Usage</h2>
+                <CodeBlock code={`import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"`} />
+                <CodeBlock code={`<Avatar>
+  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+  <AvatarFallback>CN</AvatarFallback>
+</Avatar>`} />
+            </div>
+
+            <div className="space-y-6">
+                <h2 className="text-xl font-bold border-b-2 border-black pb-2">Examples</h2>
+
+                <div className="space-y-4">
+                    <h3 className="font-bold">With Image</h3>
+                    <ComponentPreview code={`<Avatar>
+  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+  <AvatarFallback>CN</AvatarFallback>
+</Avatar>`}>
+                        <Avatar>
+                            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                            <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                    </ComponentPreview>
+                </div>
+
+                <div className="space-y-4">
+                    <h3 className="font-bold">Fallback</h3>
+                    <p className="text-sm text-neutral-600">Displays initials when no image is available.</p>
+                    <ComponentPreview code={`<Avatar>
+  <AvatarFallback>JD</AvatarFallback>
+</Avatar>`}>
+                        <Avatar>
+                            <AvatarFallback>JD</AvatarFallback>
+                        </Avatar>
+                    </ComponentPreview>
+                </div>
+
+                <div className="space-y-4">
+                    <h3 className="font-bold">Group</h3>
+                    <p className="text-sm text-neutral-600">Display multiple avatars with an overflow indicator.</p>
+                    <ComponentPreview code={`<AvatarGroup max={3}>
+  <Avatar><AvatarFallback>A</AvatarFallback></Avatar>
+  <Avatar><AvatarFallback>B</AvatarFallback></Avatar>
+  <Avatar><AvatarFallback>C</AvatarFallback></Avatar>
+  <Avatar><AvatarFallback>D</AvatarFallback></Avatar>
+  <Avatar><AvatarFallback>E</AvatarFallback></Avatar>
+</AvatarGroup>`}>
+                        <AvatarGroup max={3}>
+                            <Avatar><AvatarFallback>A</AvatarFallback></Avatar>
+                            <Avatar><AvatarFallback>B</AvatarFallback></Avatar>
+                            <Avatar><AvatarFallback>C</AvatarFallback></Avatar>
+                            <Avatar><AvatarFallback>D</AvatarFallback></Avatar>
+                            <Avatar><AvatarFallback>E</AvatarFallback></Avatar>
+                        </AvatarGroup>
+                    </ComponentPreview>
+                </div>
             </div>
         </div>
     )
