@@ -3,7 +3,6 @@
 import * as React from "react"
 import { CodeBlock } from "@/components/docs/code-block"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
     code: string
@@ -14,33 +13,40 @@ export function ComponentPreview({ code, children, className, ...props }: Compon
     const [view, setView] = React.useState<"preview" | "code">("preview")
 
     return (
-        <div className={cn("space-y-4", className)} {...props}>
-            <div className="flex items-center gap-2">
-                <Button
-                    variant={view === "preview" ? "default" : "neutral"}
-                    size="sm"
+        <div className={cn("border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-bw", className)} {...props}>
+            <div className="flex border-b-2 border-black divide-x-2 divide-black">
+                <button
                     onClick={() => setView("preview")}
-                    className="w-24"
+                    className={cn(
+                        "flex-1 py-2 text-sm font-medium uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-inset",
+                        view === "preview" ? "bg-main" : "bg-bw hover:bg-main/30"
+                    )}
                 >
                     Preview
-                </Button>
-                <Button
-                    variant={view === "code" ? "default" : "neutral"}
-                    size="sm"
+                </button>
+                <button
                     onClick={() => setView("code")}
-                    className="w-24"
+                    className={cn(
+                        "flex-1 py-2 text-sm font-medium uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-inset",
+                        view === "code" ? "bg-main" : "bg-bw hover:bg-main/30"
+                    )}
                 >
                     Code
-                </Button>
+                </button>
             </div>
 
-            {view === "preview" ? (
-                <div className="min-h-[350px] flex items-center justify-center rounded-base border-2 border-border bg-bw p-10 shadow-brutal">
-                    {children}
-                </div>
-            ) : (
-                <CodeBlock code={code} />
-            )}
+            <div className="bg-bw">
+                {view === "preview" ? (
+                    <div className="p-4 min-h-[200px] flex items-center justify-center">
+                        {children}
+                    </div>
+                ) : (
+                    <CodeBlock
+                        code={code}
+                        className="border-0 rounded-none shadow-none m-0"
+                    />
+                )}
+            </div>
         </div>
     )
 }

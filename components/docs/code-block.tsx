@@ -21,12 +21,11 @@ export function CodeBlock({ code, language = "tsx", className, ...props }: CodeB
     }
 
     return (
-        <div className={cn("relative group rounded-base border-2 border-border bg-neutral-950 text-neutral-50 font-mono text-sm", className)} {...props}>
-            <div className="absolute right-4 top-4 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+        <div className={cn("relative group rounded-base border-2 border-border bg-black text-white font-mono text-sm", className)} {...props}>
+            <div className="absolute right-4 top-4 z-10">
                 <Button
                     size="icon"
-                    variant="neutral"
-                    className="h-8 w-8 border-neutral-700 bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-neutral-200"
+                    className="h-8 w-8 border-white/60 bg-white/20 hover:bg-black/30 text-white hover:translate-0"
                     onClick={onCopy}
                 >
                     {hasCopied ? (

@@ -45,6 +45,40 @@ const sidebarItems = [
     },
 ]
 
+interface SidebarContentProps {
+    pathname: string
+    onLinkClick?: () => void
+}
+
+const SidebarContent = ({ pathname, onLinkClick }: SidebarContentProps) => (
+    <div className="h-full overflow-y-auto py-6 px-4 bg-white">
+        {sidebarItems.map((group, i) => (
+            <div key={i} className="mb-8">
+                <h4 className="mb-2 px-2 text-sm font-black uppercase tracking-wider text-neutral-500">
+                    {group.title}
+                </h4>
+                <div className="grid grid-cols-1 gap-1">
+                    {group.items.map((item) => (
+                        <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={onLinkClick}
+                            className={cn(
+                                "block rounded-base px-2 py-1.5 text-sm font-bold transition-all duration-200",
+                                pathname === item.href
+                                    ? "bg-main text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                                    : "text-neutral-700 hover:bg-main/50 hover:translate-x-1"
+                            )}
+                        >
+                            {item.title}
+                        </Link>
+                    ))}
+                </div>
+            </div>
+        ))}
+    </div>
+)
+
 export default function DocsLayout({
     children,
 }: {
@@ -52,35 +86,6 @@ export default function DocsLayout({
 }) {
     const pathname = usePathname()
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-
-    const SidebarContent = () => (
-        <div className="h-full overflow-y-auto py-6 px-4 bg-white">
-            {sidebarItems.map((group, i) => (
-                <div key={i} className="mb-8">
-                    <h4 className="mb-2 px-2 text-sm font-black uppercase tracking-wider text-neutral-500">
-                        {group.title}
-                    </h4>
-                    <div className="grid grid-cols-1 gap-1">
-                        {group.items.map((item) => (
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                onClick={() => setIsSidebarOpen(false)}
-                                className={cn(
-                                    "block rounded-base px-2 py-1.5 text-sm font-bold transition-all duration-200",
-                                    pathname === item.href
-                                        ? "bg-main text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
-                                        : "text-neutral-700 hover:bg-main/50 hover:translate-x-1"
-                                )}
-                            >
-                                {item.title}
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            ))}
-        </div>
-    )
 
     return (
         <div className="flex min-h-screen flex-col md:flex-row bg-bg">
@@ -91,7 +96,7 @@ export default function DocsLayout({
                     </Link>
                 </div>
                 <div className="h-[calc(100vh-4rem)]">
-                    <SidebarContent />
+                    <SidebarContent pathname={pathname} />
                 </div>
             </aside>
 
@@ -118,7 +123,7 @@ export default function DocsLayout({
                 "fixed top-16 left-0 z-40 h-[calc(100vh-4rem)] w-64 border-r-2 border-black bg-white transition-transform duration-300 md:hidden",
                 isSidebarOpen ? "translate-x-0" : "-translate-x-full"
             )}>
-                <SidebarContent />
+                <SidebarContent pathname={pathname} onLinkClick={() => setIsSidebarOpen(false)} />
             </aside>
 
             <main className="flex-1 md:pl-64">

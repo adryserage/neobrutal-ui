@@ -43,9 +43,6 @@ body {
   background-color: var(--bg);
   color: var(--black);
   font-family: var(--font-sans);
-  /* Firefox support */
-  scrollbar-width: thin;
-  scrollbar-color: var(--main) var(--white);
 }
 
 @layer utilities {
