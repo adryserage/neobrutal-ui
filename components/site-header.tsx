@@ -31,7 +31,7 @@ export function SiteHeader() {
                         className="lg:hidden p-2 focus-brutal cursor-pointer"
                         aria-label="Toggle menu"
                     >
-                        {isMenuOpen ? <XIcon size={28} /> : <ListIcon size={28} />}
+                        {isMenuOpen ? <XIcon size={28} weight="bold" /> : <ListIcon size={28} weight="bold" />}
                     </button>
                 </div>
             </div>

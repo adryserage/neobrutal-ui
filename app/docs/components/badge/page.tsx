@@ -17,9 +17,9 @@ const htmlCode = `<span class="inline-flex items-center rounded-[5px] border-2 b
 export default function BadgePage() {
     return (
         <div className="space-y-8">
-            <div className="space-y-2">
-                <h1 className="text-3xl font-black">Badge</h1>
-                <p className="text-lg text-neutral-600">
+            <div className="space-y-1">
+                <h1 className="text-3xl font-bols">Badge</h1>
+                <p className="text-lg text-black/90">
                     Displays a small label for status or categorization.
                 </p>
             </div>

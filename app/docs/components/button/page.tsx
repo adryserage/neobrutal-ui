@@ -17,9 +17,9 @@ const htmlCode = `<button class="inline-flex items-center justify-center h-10 px
 export default function ButtonPage() {
     return (
         <div className="space-y-8">
-            <div className="space-y-2">
-                <h1 className="text-3xl font-black">Button</h1>
-                <p className="text-lg text-neutral-600">
+            <div className="space-y-1">
+                <h1 className="text-3xl font-bold">Button</h1>
+                <p className="text-lg text-black/90">
                     Displays a button or a component that looks like a button.
                 </p>
             </div>
@@ -101,7 +101,7 @@ export default function ButtonPage() {
 
                 <div className="space-y-4">
                     <h3 className="font-bold">Link</h3>
-                    <p className="text-sm text-neutral-600">Use the asChild prop to render as a link.</p>
+                    <p className="text-sm text-black/90">Use the asChild prop to render as a link.</p>
                     <CodeBlock code={`import Link from "next/link"
 
 <Button asChild>

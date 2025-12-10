@@ -33,9 +33,9 @@ const htmlCode = `<div role="alert" class="relative w-full rounded-[5px] border-
 export default function AlertPage() {
     return (
         <div className="space-y-8">
-            <div className="space-y-2">
-                <h1 className="text-3xl font-black">Alert</h1>
-                <p className="text-lg text-neutral-600">
+            <div className="space-y-1">
+                <h1 className="text-3xl font-bold">Alert</h1>
+                <p className="text-lg text-black/90">
                     Displays a message to attract user attention.
                 </p>
             </div>

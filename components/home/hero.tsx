@@ -36,11 +36,9 @@ export function HeroSection() {
             <div className="container mx-auto px-4 md:px-8 text-center relative z-10 mb-10">
                 <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-[0.9]">
                     Neobrutalist <br />
-                    <span className="text-main relative inline-block">
-                        Components
-                    </span>
+                    Components
                 </h1>
-                <p className="text-lg md:text-xl font-medium max-w-2xl mx-auto mb-6 text-black/80">
+                <p className="text-lg md:text-xl font-medium max-w-2xl mx-auto mb-6 text-black/90">
                     Accessible UI components with bold styling.
                     Copy and paste into your apps. Open source.
                 </p>

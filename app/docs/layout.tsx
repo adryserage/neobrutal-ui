@@ -103,7 +103,6 @@ export default function DocsLayout({
 
             <div className="sticky top-0 z-40 flex h-16 items-center justify-between border-b-2 border-black bg-main px-6 md:hidden">
                 <Link href="/" className="text-xl font-black italic">
-                    NeoBrutal UI
                     <div className="flex items-center gap-1">
                         <Image src="/neobrutalui-logo.svg" alt="NeoBrutal UI Logo" width={24} height={24} />
                         <span className="text-lg md:text-xl font-bold italic">NeoBrutal UI</span>
@@ -111,9 +110,9 @@ export default function DocsLayout({
                 </Link>
                 <button
                     onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                    className="p-2 hover:bg-black/10 rounded-base"
+                    className="p-2 focus-brutal cursor-pointer"
                 >
-                    {isSidebarOpen ? <XIcon size={24} weight="bold" /> : <ListIcon size={24} weight="bold" />}
+                    {isSidebarOpen ? <XIcon size={28} weight="bold" /> : <ListIcon size={28} weight="bold" />}
                 </button>
             </div>
 

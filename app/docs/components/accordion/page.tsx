@@ -57,48 +57,48 @@ const htmlCode = `<div class="w-full max-w-md">
 </div>`
 
 export default function AccordionPage() {
-    return (
-        <div className="space-y-8">
-            <div className="space-y-2">
-                <h1 className="text-3xl font-black">Accordion</h1>
-                <p className="text-lg text-neutral-600">
-                    A vertically stacked set of collapsible sections.
-                </p>
-            </div>
+  return (
+    <div className="space-y-8">
+      <div className="space-y-1">
+        <h1 className="text-3xl font-bold">Accordion</h1>
+        <p className="text-lg text-black/90">
+          A vertically stacked set of collapsible sections.
+        </p>
+      </div>
 
-            <ComponentPreview code={usageCode} htmlCode={htmlCode}>
-                <Accordion type="single" collapsible className="w-full max-w-md">
-                    <AccordionItem value="item-1">
-                        <AccordionTrigger>Is it styled?</AccordionTrigger>
-                        <AccordionContent>
-                            Yes. It comes with Neobrutalist styling out of the box.
-                        </AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="item-2">
-                        <AccordionTrigger>Is it animated?</AccordionTrigger>
-                        <AccordionContent>
-                            Yes. Animations are enabled by default.
-                        </AccordionContent>
-                    </AccordionItem>
-                </Accordion>
-            </ComponentPreview>
+      <ComponentPreview code={usageCode} htmlCode={htmlCode}>
+        <Accordion type="single" collapsible className="w-full max-w-md">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Is it styled?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It comes with Neobrutalist styling out of the box.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Is it animated?</AccordionTrigger>
+            <AccordionContent>
+              Yes. Animations are enabled by default.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </ComponentPreview>
 
-            <div className="space-y-4">
-                <h2 className="text-xl font-bold border-b-2 border-black pb-2">Installation</h2>
-                <CodeBlock code="npx neobrutal-ui add accordion" language="bash" />
-                <p className="text-sm text-neutral-600">Or install the dependency and copy the code:</p>
-                <CodeBlock code="npm install @radix-ui/react-accordion" language="bash" />
-            </div>
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold border-b-2 border-black pb-2">Installation</h2>
+        <CodeBlock code="npx neobrutal-ui add accordion" language="bash" />
+        <p className="text-sm text-black/90">Or install the dependency and copy the code:</p>
+        <CodeBlock code="npm install @radix-ui/react-accordion" language="bash" />
+      </div>
 
-            <div className="space-y-4">
-                <h2 className="text-xl font-bold border-b-2 border-black pb-2">Usage</h2>
-                <CodeBlock code={`import {
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold border-b-2 border-black pb-2">Usage</h2>
+        <CodeBlock code={`import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"`} />
-                <CodeBlock code={`<Accordion type="single" collapsible>
+        <CodeBlock code={`<Accordion type="single" collapsible>
   <AccordionItem value="item-1">
     <AccordionTrigger>Section Title</AccordionTrigger>
     <AccordionContent>
@@ -106,15 +106,15 @@ export default function AccordionPage() {
     </AccordionContent>
   </AccordionItem>
 </Accordion>`} />
-            </div>
+      </div>
 
-            <div className="space-y-6">
-                <h2 className="text-xl font-bold border-b-2 border-black pb-2">Examples</h2>
+      <div className="space-y-6">
+        <h2 className="text-xl font-bold border-b-2 border-black pb-2">Examples</h2>
 
-                <div className="space-y-4">
-                    <h3 className="font-bold">Multiple</h3>
-                    <p className="text-sm text-neutral-600">Allow multiple sections to be open at once.</p>
-                    <ComponentPreview code={`<Accordion type="multiple" className="w-full">
+        <div className="space-y-4">
+          <h3 className="font-bold">Multiple</h3>
+          <p className="text-sm text-black/90">Allow multiple sections to be open at once.</p>
+          <ComponentPreview code={`<Accordion type="multiple" className="w-full">
   <AccordionItem value="item-1">
     <AccordionTrigger>First Section</AccordionTrigger>
     <AccordionContent>First content</AccordionContent>
@@ -124,37 +124,37 @@ export default function AccordionPage() {
     <AccordionContent>Second content</AccordionContent>
   </AccordionItem>
 </Accordion>`}>
-                        <Accordion type="multiple" className="w-full max-w-md">
-                            <AccordionItem value="item-1">
-                                <AccordionTrigger>First Section</AccordionTrigger>
-                                <AccordionContent>First content</AccordionContent>
-                            </AccordionItem>
-                            <AccordionItem value="item-2">
-                                <AccordionTrigger>Second Section</AccordionTrigger>
-                                <AccordionContent>Second content</AccordionContent>
-                            </AccordionItem>
-                        </Accordion>
-                    </ComponentPreview>
-                </div>
+            <Accordion type="multiple" className="w-full max-w-md">
+              <AccordionItem value="item-1">
+                <AccordionTrigger>First Section</AccordionTrigger>
+                <AccordionContent>First content</AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger>Second Section</AccordionTrigger>
+                <AccordionContent>Second content</AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </ComponentPreview>
+        </div>
 
-                <div className="space-y-4">
-                    <h3 className="font-bold">Default Open</h3>
-                    <p className="text-sm text-neutral-600">Set a section to be open by default.</p>
-                    <ComponentPreview code={`<Accordion type="single" defaultValue="item-1" collapsible>
+        <div className="space-y-4">
+          <h3 className="font-bold">Default Open</h3>
+          <p className="text-sm text-black/90">Set a section to be open by default.</p>
+          <ComponentPreview code={`<Accordion type="single" defaultValue="item-1" collapsible>
   <AccordionItem value="item-1">
     <AccordionTrigger>Open by default</AccordionTrigger>
     <AccordionContent>This section starts open.</AccordionContent>
   </AccordionItem>
 </Accordion>`}>
-                        <Accordion type="single" defaultValue="item-1" collapsible className="w-full max-w-md">
-                            <AccordionItem value="item-1">
-                                <AccordionTrigger>Open by default</AccordionTrigger>
-                                <AccordionContent>This section starts open.</AccordionContent>
-                            </AccordionItem>
-                        </Accordion>
-                    </ComponentPreview>
-                </div>
-            </div>
+            <Accordion type="single" defaultValue="item-1" collapsible className="w-full max-w-md">
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Open by default</AccordionTrigger>
+                <AccordionContent>This section starts open.</AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </ComponentPreview>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
