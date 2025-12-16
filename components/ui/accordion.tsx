@@ -1,21 +1,23 @@
 "use client"
 
 import * as React from "react"
-import * as AccordionPrimitive from "@radix-ui/react-accordion"
+import { Accordion as BaseAccordion } from "@base-ui/react/accordion"
 import { CaretDownIcon } from "@phosphor-icons/react"
 
 import { cn } from "@/lib/utils"
 
-const Accordion = AccordionPrimitive.Root
+const Accordion = BaseAccordion.Root
+
+type AccordionItemProps = React.ComponentPropsWithoutRef<typeof BaseAccordion.Item>
 
 const AccordionItem = React.forwardRef<
-    React.ComponentRef<typeof AccordionPrimitive.Item>,
-    React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
+    React.ComponentRef<typeof BaseAccordion.Item>,
+    AccordionItemProps
 >(({ className, ...props }, ref) => (
-    <AccordionPrimitive.Item
+    <BaseAccordion.Item
         ref={ref}
         className={cn(
-            "mb-4 border-2 border-black bg-bw data-[state=open]:bg-main/30 data-[state=open]:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]",
+            "mb-4 border-2 border-black bg-bw data-panel-open:bg-main/30 data-panel-open:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]",
             className
         )}
         {...props}
@@ -23,38 +25,42 @@ const AccordionItem = React.forwardRef<
 ))
 AccordionItem.displayName = "AccordionItem"
 
+type AccordionTriggerProps = React.ComponentPropsWithoutRef<typeof BaseAccordion.Trigger>
+
 const AccordionTrigger = React.forwardRef<
-    React.ComponentRef<typeof AccordionPrimitive.Trigger>,
-    React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
+    React.ComponentRef<typeof BaseAccordion.Trigger>,
+    AccordionTriggerProps
 >(({ className, children, ...props }, ref) => (
-    <AccordionPrimitive.Header className="flex">
-        <AccordionPrimitive.Trigger
+    <BaseAccordion.Header className="flex">
+        <BaseAccordion.Trigger
             ref={ref}
             className={cn(
-                "flex flex-1 items-center justify-between p-3 font-medium [&[data-state=open]>svg]:rotate-180 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-inset",
+                "flex flex-1 items-center justify-between p-3 font-medium [&[data-panel-open]>svg]:rotate-180 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-inset",
                 className
             )}
             {...props}
         >
             {children}
             <CaretDownIcon className="h-4 w-4 shrink-0 transition-transform duration-200" />
-        </AccordionPrimitive.Trigger>
-    </AccordionPrimitive.Header>
+        </BaseAccordion.Trigger>
+    </BaseAccordion.Header>
 ))
-AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName
+AccordionTrigger.displayName = "AccordionTrigger"
+
+type AccordionContentProps = React.ComponentPropsWithoutRef<typeof BaseAccordion.Panel>
 
 const AccordionContent = React.forwardRef<
-    React.ComponentRef<typeof AccordionPrimitive.Content>,
-    React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
+    React.ComponentRef<typeof BaseAccordion.Panel>,
+    AccordionContentProps
 >(({ className, children, ...props }, ref) => (
-    <AccordionPrimitive.Content
+    <BaseAccordion.Panel
         ref={ref}
-        className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+        className="overflow-hidden text-sm h-(--accordion-panel-height) transition-[height] duration-200 data-ending-style:h-0 data-starting-style:h-0"
         {...props}
     >
         <div className={cn("p-3 pt-0 border-black", className)}>{children}</div>
-    </AccordionPrimitive.Content>
+    </BaseAccordion.Panel>
 ))
-AccordionContent.displayName = AccordionPrimitive.Content.displayName
+AccordionContent.displayName = "AccordionContent"
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }

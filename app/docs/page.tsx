@@ -55,7 +55,7 @@ export default function DocsPage() {
 
             <section className="space-y-4">
                 <h2 className="text-2xl font-bold text-black">FAQ</h2>
-                <Accordion type="single" collapsible className="w-full">
+                <Accordion className="w-full">
                     <AccordionItem value="item-1">
                         <AccordionTrigger className="text-base font-bold text-black">
                             Is this a component library I install from npm?

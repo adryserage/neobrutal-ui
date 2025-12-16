@@ -4,13 +4,13 @@
   "type": "registry:ui",
   "description": "Displays an indicator showing the completion progress of a task.",
   "dependencies": [
-    "@radix-ui/react-progress"
+    "@base-ui/react"
   ],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/progress.tsx",
-      "content": "\"use client\"\r\n\r\nimport * as React from \"react\"\r\nimport * as ProgressPrimitive from \"@radix-ui/react-progress\"\r\n\r\nimport { cn } from \"@/lib/utils\"\r\n\r\nexport type ProgressProps = React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & {\r\n    variant?: \"default\" | \"destructive\"\r\n}\r\n\r\nconst Progress = React.forwardRef<\r\n    React.ComponentRef<typeof ProgressPrimitive.Root>,\r\n    ProgressProps\r\n>(({ className, value, variant = \"default\", ...props }, ref) => (\r\n    <ProgressPrimitive.Root\r\n        ref={ref}\r\n        className={cn(\r\n            \"relative h-4 w-full overflow-hidden rounded-full border-2 border-border bg-bw\",\r\n            className\r\n        )}\r\n        {...props}\r\n    >\r\n        <ProgressPrimitive.Indicator\r\n            className={cn(\r\n                \"h-full w-full flex-1 transition-all\",\r\n                variant === \"destructive\" ? \"bg-red-400\" : \"bg-main\"\r\n            )}\r\n            style={{ transform: `translateX(-${100 - (value || 0)}%)` }}\r\n        />\r\n    </ProgressPrimitive.Root>\r\n))\r\nProgress.displayName = ProgressPrimitive.Root.displayName\r\n\r\nexport { Progress }\r\n",
+      "content": "\"use client\"\r\n\r\nimport * as React from \"react\"\r\nimport { Progress as BaseProgress } from \"@base-ui/react/progress\"\r\n\r\nimport { cn } from \"@/lib/utils\"\r\n\r\nexport type ProgressProps = React.ComponentPropsWithoutRef<typeof BaseProgress.Root> & {\r\n    variant?: \"default\" | \"destructive\"\r\n}\r\n\r\nconst Progress = React.forwardRef<\r\n    React.ComponentRef<typeof BaseProgress.Root>,\r\n    ProgressProps\r\n>(({ className, value, variant = \"default\", ...props }, ref) => (\r\n    <BaseProgress.Root\r\n        ref={ref}\r\n        value={value}\r\n        className={cn(\r\n            \"relative h-4 w-full overflow-hidden rounded-full border-2 border-border bg-bw\",\r\n            className\r\n        )}\r\n        {...props}\r\n    >\r\n        <BaseProgress.Track className=\"h-full w-full overflow-hidden\">\r\n            <BaseProgress.Indicator\r\n                className={cn(\r\n                    \"h-full w-full flex-1 transition-all\",\r\n                    variant === \"destructive\" ? \"bg-red-400\" : \"bg-main\"\r\n                )}\r\n                style={{ transform: `translateX(-${100 - (value || 0)}%)` }}\r\n            />\r\n        </BaseProgress.Track>\r\n    </BaseProgress.Root>\r\n))\r\nProgress.displayName = \"Progress\"\r\n\r\nexport { Progress }\r\n",
       "type": "registry:ui"
     }
   ]

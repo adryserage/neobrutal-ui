@@ -3,10 +3,7 @@
   "name": "breadcrumb",
   "type": "registry:ui",
   "description": "Displays the path to the current resource using a hierarchy of links.",
-  "dependencies": [
-    "@radix-ui/react-slot",
-    "@phosphor-icons/react"
-  ],
+  "dependencies": [],
   "registryDependencies": [],
   "files": [
     {

@@ -3,9 +3,7 @@
   "name": "avatar",
   "type": "registry:ui",
   "description": "An image element with a fallback for representing the user.",
-  "dependencies": [
-    "@radix-ui/react-avatar"
-  ],
+  "dependencies": [],
   "registryDependencies": [],
   "files": [
     {

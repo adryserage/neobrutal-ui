@@ -115,8 +115,8 @@ export default function SwitchPage() {
 
             <div className="space-y-4">
                 <h2 className="text-2xl font-bold border-b-2 border-border pb-2">Installation</h2>
-                <p className="text-black mb-2">Install Radix UI dependency:</p>
-                <CodeBlock code="npm install @radix-ui/react-switch" language="bash" />
+                <p className="text-black mb-2">Install dependency:</p>
+                <CodeBlock code="npm install @base-ui/react" language="bash" />
                 <p className="text-black mb-2">Copy the component code into <code className="bg-neutral-200 px-2 py-1 rounded">components/ui/switch.tsx</code>:</p>
                 <CodeBlock code={switchCode} />
             </div>

@@ -49,8 +49,6 @@ export default function AvatarPage() {
             <div className="space-y-4">
                 <h2 className="text-xl font-bold">Installation</h2>
                 <CodeBlock code="npx neobrutal-ui add avatar" language="bash" />
-                <p className="text-base text-black">Or install the dependency and copy the code:</p>
-                <CodeBlock code="npm install @radix-ui/react-avatar" language="bash" />
             </div>
 
             <div className="space-y-4">

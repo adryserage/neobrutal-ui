@@ -1,35 +1,38 @@
 "use client"
 
 import * as React from "react"
-import * as ProgressPrimitive from "@radix-ui/react-progress"
+import { Progress as BaseProgress } from "@base-ui/react/progress"
 
 import { cn } from "@/lib/utils"
 
-export type ProgressProps = React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & {
+export type ProgressProps = React.ComponentPropsWithoutRef<typeof BaseProgress.Root> & {
     variant?: "default" | "destructive"
 }
 
 const Progress = React.forwardRef<
-    React.ComponentRef<typeof ProgressPrimitive.Root>,
+    React.ComponentRef<typeof BaseProgress.Root>,
     ProgressProps
 >(({ className, value, variant = "default", ...props }, ref) => (
-    <ProgressPrimitive.Root
+    <BaseProgress.Root
         ref={ref}
+        value={value}
         className={cn(
             "relative h-4 w-full overflow-hidden rounded-full border-2 border-border bg-bw",
             className
         )}
         {...props}
     >
-        <ProgressPrimitive.Indicator
-            className={cn(
-                "h-full w-full flex-1 transition-all",
-                variant === "destructive" ? "bg-red-400" : "bg-main"
-            )}
-            style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
-        />
-    </ProgressPrimitive.Root>
+        <BaseProgress.Track className="h-full w-full overflow-hidden">
+            <BaseProgress.Indicator
+                className={cn(
+                    "h-full w-full flex-1 transition-all",
+                    variant === "destructive" ? "bg-red-400" : "bg-main"
+                )}
+                style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
+            />
+        </BaseProgress.Track>
+    </BaseProgress.Root>
 ))
-Progress.displayName = ProgressPrimitive.Root.displayName
+Progress.displayName = "Progress"
 
 export { Progress }

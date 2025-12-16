@@ -3,9 +3,7 @@
   "name": "tabs",
   "type": "registry:ui",
   "description": "A set of layered sections of content displayed one at a time.",
-  "dependencies": [
-    "@radix-ui/react-tabs"
-  ],
+  "dependencies": [],
   "registryDependencies": [],
   "files": [
     {

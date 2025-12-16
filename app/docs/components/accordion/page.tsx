@@ -13,7 +13,7 @@ const usageCode = `import {
 
 export function AccordionDemo() {
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion className="w-full">
       <AccordionItem value="item-1">
         <AccordionTrigger>Is it styled?</AccordionTrigger>
         <AccordionContent>
@@ -68,7 +68,7 @@ export default function AccordionPage() {
           A vertically stacked set of collapsible sections.
         </p>
       </section>      <ComponentPreview code={usageCode} htmlCode={htmlCode}>
-        <Accordion type="single" collapsible className="w-full max-w-md">
+        <Accordion className="w-full max-w-md">
           <AccordionItem value="item-1">
             <AccordionTrigger>Is it styled?</AccordionTrigger>
             <AccordionContent>
@@ -88,7 +88,7 @@ export default function AccordionPage() {
         <h2 className="text-xl font-bold">Installation</h2>
         <CodeBlock code="npx neobrutal-ui add accordion" language="bash" />
         <p className="text-base text-black">Or install the dependency and copy the code:</p>
-        <CodeBlock code="npm install @radix-ui/react-accordion" language="bash" />
+        <CodeBlock code="npm install @base-ui/react" language="bash" />
       </div>
 
       <div className="space-y-4">
@@ -99,7 +99,7 @@ export default function AccordionPage() {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"`} />
-        <CodeBlock code={`<Accordion type="single" collapsible>
+        <CodeBlock code={`<Accordion>
   <AccordionItem value="item-1">
     <AccordionTrigger>Section Title</AccordionTrigger>
     <AccordionContent>
@@ -115,7 +115,7 @@ export default function AccordionPage() {
         <div className="space-y-4">
           <h3 className="font-bold">Multiple</h3>
           <p className="text-base text-black">Allow multiple sections to be open at once.</p>
-          <ComponentPreview code={`<Accordion type="multiple" className="w-full">
+          <ComponentPreview code={`<Accordion multiple className="w-full">
   <AccordionItem value="item-1">
     <AccordionTrigger>First Section</AccordionTrigger>
     <AccordionContent>First content</AccordionContent>
@@ -125,7 +125,7 @@ export default function AccordionPage() {
     <AccordionContent>Second content</AccordionContent>
   </AccordionItem>
 </Accordion>`}>
-            <Accordion type="multiple" className="w-full max-w-md">
+            <Accordion multiple className="w-full max-w-md">
               <AccordionItem value="item-1">
                 <AccordionTrigger>First Section</AccordionTrigger>
                 <AccordionContent>First content</AccordionContent>
@@ -141,13 +141,13 @@ export default function AccordionPage() {
         <div className="space-y-4">
           <h3 className="font-bold">Default Open</h3>
           <p className="text-base text-black">Set a section to be open by default.</p>
-          <ComponentPreview code={`<Accordion type="single" defaultValue="item-1" collapsible>
+          <ComponentPreview code={`<Accordion defaultValue={["item-1"]}>
   <AccordionItem value="item-1">
     <AccordionTrigger>Open by default</AccordionTrigger>
     <AccordionContent>This section starts open.</AccordionContent>
   </AccordionItem>
 </Accordion>`}>
-            <Accordion type="single" defaultValue="item-1" collapsible className="w-full max-w-md">
+            <Accordion defaultValue={["item-1"]} className="w-full max-w-md">
               <AccordionItem value="item-1">
                 <AccordionTrigger>Open by default</AccordionTrigger>
                 <AccordionContent>This section starts open.</AccordionContent>

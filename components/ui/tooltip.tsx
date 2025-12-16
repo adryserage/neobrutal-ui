@@ -1,29 +1,37 @@
 "use client"
 
 import * as React from "react"
-import * as TooltipPrimitive from "@radix-ui/react-tooltip"
+import { Tooltip as BaseTooltip } from "@base-ui/react/tooltip"
 import { cn } from "@/lib/utils"
 
-const TooltipProvider = TooltipPrimitive.Provider
+const TooltipProvider = BaseTooltip.Provider
 
-const Tooltip = TooltipPrimitive.Root
+const Tooltip = BaseTooltip.Root
 
-const TooltipTrigger = TooltipPrimitive.Trigger
+const TooltipTrigger = BaseTooltip.Trigger
+
+type TooltipContentProps = React.ComponentPropsWithoutRef<typeof BaseTooltip.Popup> & {
+    sideOffset?: number
+    side?: "top" | "bottom" | "left" | "right"
+}
 
 const TooltipContent = React.forwardRef<
-    React.ComponentRef<typeof TooltipPrimitive.Content>,
-    React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
->(({ className, sideOffset = 4, ...props }, ref) => (
-    <TooltipPrimitive.Content
-        ref={ref}
-        sideOffset={sideOffset}
-        className={cn(
-            "z-50 overflow-hidden rounded-base border-2 border-border bg-black px-3 py-1.5 text-xs text-white animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-            className
-        )}
-        {...props}
-    />
+    React.ComponentRef<typeof BaseTooltip.Popup>,
+    TooltipContentProps
+>(({ className, sideOffset = 4, side = "top", ...props }, ref) => (
+    <BaseTooltip.Portal>
+        <BaseTooltip.Positioner sideOffset={sideOffset} side={side}>
+            <BaseTooltip.Popup
+                ref={ref}
+                className={cn(
+                    "z-50 overflow-hidden rounded-base border-2 border-border bg-black px-3 py-1.5 text-xs text-white transition-[transform,scale,opacity] data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0",
+                    className
+                )}
+                {...props}
+            />
+        </BaseTooltip.Positioner>
+    </BaseTooltip.Portal>
 ))
-TooltipContent.displayName = TooltipPrimitive.Content.displayName
+TooltipContent.displayName = "TooltipContent"
 
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }

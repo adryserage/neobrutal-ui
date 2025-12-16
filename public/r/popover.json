@@ -4,13 +4,13 @@
   "type": "registry:ui",
   "description": "Displays rich content in a portal, triggered by a button.",
   "dependencies": [
-    "@radix-ui/react-popover"
+    "@base-ui/react"
   ],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/popover.tsx",
-      "content": "\"use client\"\r\n\r\nimport * as React from \"react\"\r\nimport * as PopoverPrimitive from \"@radix-ui/react-popover\"\r\nimport { cn } from \"@/lib/utils\"\r\n\r\nconst Popover = PopoverPrimitive.Root\r\n\r\nconst PopoverTrigger = PopoverPrimitive.Trigger\r\n\r\nconst PopoverContent = React.forwardRef<\r\n    React.ComponentRef<typeof PopoverPrimitive.Content>,\r\n    React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>\r\n>(({ className, align = \"center\", sideOffset = 4, ...props }, ref) => (\r\n    <PopoverPrimitive.Portal>\r\n        <PopoverPrimitive.Content\r\n            ref={ref}\r\n            align={align}\r\n            sideOffset={sideOffset}\r\n            className={cn(\r\n                \"z-50 w-72 rounded-base border-2 border-border bg-bw p-4 text-text shadow-brutal outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2\",\r\n                className\r\n            )}\r\n            {...props}\r\n        />\r\n    </PopoverPrimitive.Portal>\r\n))\r\nPopoverContent.displayName = PopoverPrimitive.Content.displayName\r\n\r\nexport { Popover, PopoverTrigger, PopoverContent }\r\n",
+      "content": "\"use client\"\r\n\r\nimport * as React from \"react\"\r\nimport { Popover as BasePopover } from \"@base-ui/react/popover\"\r\nimport { cn } from \"@/lib/utils\"\r\n\r\nconst Popover = BasePopover.Root\r\n\r\nconst PopoverTrigger = BasePopover.Trigger\r\n\r\ntype PopoverContentProps = React.ComponentPropsWithoutRef<typeof BasePopover.Popup> & {\r\n    align?: \"start\" | \"center\" | \"end\"\r\n    sideOffset?: number\r\n}\r\n\r\nconst PopoverContent = React.forwardRef<\r\n    React.ComponentRef<typeof BasePopover.Popup>,\r\n    PopoverContentProps\r\n>(({ className, align = \"center\", sideOffset = 4, ...props }, ref) => (\r\n    <BasePopover.Portal>\r\n        <BasePopover.Positioner sideOffset={sideOffset} align={align}>\r\n            <BasePopover.Popup\r\n                ref={ref}\r\n                className={cn(\r\n                    \"z-50 w-72 rounded-base border-2 border-border bg-bw p-4 text-text shadow-brutal outline-none transition-[transform,scale,opacity] data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0\",\r\n                    className\r\n                )}\r\n                {...props}\r\n            />\r\n        </BasePopover.Positioner>\r\n    </BasePopover.Portal>\r\n))\r\nPopoverContent.displayName = \"PopoverContent\"\r\n\r\nexport { Popover, PopoverTrigger, PopoverContent }\r\n",
       "type": "registry:ui"
     }
   ]

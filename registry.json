@@ -8,7 +8,7 @@
             "type": "registry:ui",
             "description": "A vertically stacked set of interactive headings that reveal content sections.",
             "dependencies": [
-                "@radix-ui/react-accordion",
+                "@base-ui/react",
                 "@phosphor-icons/react"
             ],
             "registryDependencies": [],
@@ -38,9 +38,7 @@
             "name": "avatar",
             "type": "registry:ui",
             "description": "An image element with a fallback for representing the user.",
-            "dependencies": [
-                "@radix-ui/react-avatar"
-            ],
+            "dependencies": [],
             "registryDependencies": [],
             "files": [
                 {
@@ -68,10 +66,7 @@
             "name": "breadcrumb",
             "type": "registry:ui",
             "description": "Displays the path to the current resource using a hierarchy of links.",
-            "dependencies": [
-                "@radix-ui/react-slot",
-                "@phosphor-icons/react"
-            ],
+            "dependencies": [],
             "registryDependencies": [],
             "files": [
                 {
@@ -114,7 +109,7 @@
             "type": "registry:ui",
             "description": "A control that allows the user to toggle between checked and not checked.",
             "dependencies": [
-                "@radix-ui/react-checkbox",
+                "@base-ui/react",
                 "@phosphor-icons/react"
             ],
             "registryDependencies": [],
@@ -130,7 +125,7 @@
             "type": "registry:ui",
             "description": "A window overlaid on the primary window with neobrutalist styling.",
             "dependencies": [
-                "@radix-ui/react-dialog",
+                "@base-ui/react",
                 "@phosphor-icons/react"
             ],
             "registryDependencies": [],
@@ -159,7 +154,6 @@
             "type": "registry:ui",
             "description": "Renders an accessible label associated with controls.",
             "dependencies": [
-                "@radix-ui/react-label",
                 "class-variance-authority"
             ],
             "registryDependencies": [],
@@ -192,7 +186,7 @@
             "type": "registry:ui",
             "description": "Displays rich content in a portal, triggered by a button.",
             "dependencies": [
-                "@radix-ui/react-popover"
+                "@base-ui/react"
             ],
             "registryDependencies": [],
             "files": [
@@ -207,7 +201,7 @@
             "type": "registry:ui",
             "description": "Displays an indicator showing the completion progress of a task.",
             "dependencies": [
-                "@radix-ui/react-progress"
+                "@base-ui/react"
             ],
             "registryDependencies": [],
             "files": [
@@ -222,7 +216,7 @@
             "type": "registry:ui",
             "description": "A set of checkable buttons where only one can be checked at a time.",
             "dependencies": [
-                "@radix-ui/react-radio-group",
+                "@base-ui/react",
                 "@phosphor-icons/react"
             ],
             "registryDependencies": [],
@@ -238,7 +232,7 @@
             "type": "registry:ui",
             "description": "Displays a list of options for the user to pick from.",
             "dependencies": [
-                "@radix-ui/react-select",
+                "@base-ui/react",
                 "@phosphor-icons/react"
             ],
             "registryDependencies": [],
@@ -267,7 +261,7 @@
             "type": "registry:ui",
             "description": "An input where the user selects a value from within a given range.",
             "dependencies": [
-                "@radix-ui/react-slider"
+                "@base-ui/react"
             ],
             "registryDependencies": [],
             "files": [
@@ -297,7 +291,7 @@
             "type": "registry:ui",
             "description": "A control that allows the user to toggle between on and off.",
             "dependencies": [
-                "@radix-ui/react-switch"
+                "@base-ui/react"
             ],
             "registryDependencies": [],
             "files": [
@@ -311,9 +305,7 @@
             "name": "tabs",
             "type": "registry:ui",
             "description": "A set of layered sections of content displayed one at a time.",
-            "dependencies": [
-                "@radix-ui/react-tabs"
-            ],
+            "dependencies": [],
             "registryDependencies": [],
             "files": [
                 {
@@ -340,7 +332,7 @@
             "type": "registry:ui",
             "description": "A popup that displays information related to an element.",
             "dependencies": [
-                "@radix-ui/react-tooltip"
+                "@base-ui/react"
             ],
             "registryDependencies": [],
             "files": [

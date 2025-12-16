@@ -107,7 +107,8 @@ export default function TabsPage() {
 
             <div className="space-y-4">
                 <h2 className="text-2xl font-bold">Installation</h2>
-                <CodeBlock code={`npm install @radix-ui/react-tabs`} language="bash" />
+                <p className="text-black mb-2">Copy the component code into <code className="bg-neutral-200 px-2 py-1 rounded">components/ui/tabs.tsx</code>:</p>
+                <CodeBlock code={tabsCode} />
             </div>
 
             <div className="space-y-4">

@@ -96,15 +96,13 @@ export default function DialogPage() {
 
             <section className="space-y-4">
                 <p className="text-base text-black">
-                    A centered modal dialog component for important interactions. Built on Radix UI with accessibility.
+                    A centered modal dialog component for important interactions. Built on Base UI with accessibility.
                 </p>
             </section>
 
             <ComponentPreview code={dialogCode}>
                 <Dialog>
-                    <DialogTrigger asChild>
-                        <Button>Open Dialog</Button>
-                    </DialogTrigger>
+                    <DialogTrigger render={<Button />}>Open Dialog</DialogTrigger>
                     <DialogContent>
                         <DialogHeader>
                             <DialogTitle>Dialog Title</DialogTitle>
@@ -123,7 +121,7 @@ export default function DialogPage() {
                     <li><strong>Close button:</strong> X button in top-right corner</li>
                     <li><strong>Focus trap:</strong> Keyboard focus stays within dialog</li>
                     <li><strong>ESC to close:</strong> Users can press Escape to dismiss</li>
-                    <li><strong>Full accessibility:</strong> Built on Radix UI Dialog primitive</li>
+                    <li><strong>Full accessibility:</strong> Built on Base UI Dialog primitive</li>
                 </ul>
             </div>
 
@@ -152,8 +150,8 @@ export default function DialogPage() {
 
             <div className="space-y-4">
                 <h2 className="text-2xl font-bold border-b-2 border-border pb-2">Installation</h2>
-                <p className="text-black mb-2">Install Radix UI dependency:</p>
-                <CodeBlock code="npm install @radix-ui/react-dialog @phosphor-icons/react" language="bash" />
+                <p className="text-black mb-2">Install dependencies:</p>
+                <CodeBlock code="npm install @base-ui/react @phosphor-icons/react" language="bash" />
                 <p className="text-black mb-2">Copy the component code into <code className="bg-neutral-200 px-2 py-1 rounded">components/ui/dialog.tsx</code>:</p>
                 <CodeBlock code={dialogCode} />
             </div>
@@ -166,9 +164,7 @@ import { Button } from "@/components/ui/button"
 export function DialogDemo() {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button>Open Dialog</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button />}>Open Dialog</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Confirm Action</DialogTitle>

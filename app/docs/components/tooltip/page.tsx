@@ -8,28 +8,37 @@ import { CodeBlock } from "@/components/docs/code-block"
 const tooltipCode = `"use client"
 
 import * as React from "react"
-import * as TooltipPrimitive from "@radix-ui/react-tooltip"
+import { Tooltip as BaseTooltip } from "@base-ui/react/tooltip"
 import { cn } from "@/lib/utils"
 
-const TooltipProvider = TooltipPrimitive.Provider
-const Tooltip = TooltipPrimitive.Root
-const TooltipTrigger = TooltipPrimitive.Trigger
+const TooltipProvider = BaseTooltip.Provider
+
+const Tooltip = BaseTooltip.Root
+
+const TooltipTrigger = BaseTooltip.Trigger
+
+type TooltipContentProps = React.ComponentPropsWithoutRef<typeof BaseTooltip.Popup> & {
+    sideOffset?: number
+}
 
 const TooltipContent = React.forwardRef<
-    React.ComponentRef<typeof TooltipPrimitive.Content>,
-    React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
+    React.ComponentRef<typeof BaseTooltip.Popup>,
+    TooltipContentProps
 >(({ className, sideOffset = 4, ...props }, ref) => (
-    <TooltipPrimitive.Content
-        ref={ref}
-        sideOffset={sideOffset}
-        className={cn(
-            "z-50 overflow-hidden rounded-base border-2 border-border bg-black px-3 py-1.5 text-xs text-white animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-            className
-        )}
-        {...props}
-    />
+    <BaseTooltip.Portal>
+        <BaseTooltip.Positioner sideOffset={sideOffset}>
+            <BaseTooltip.Popup
+                ref={ref}
+                className={cn(
+                    "z-50 overflow-hidden rounded-base border-2 border-border bg-black px-3 py-1.5 text-xs text-white transition-[transform,scale,opacity] data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0",
+                    className
+                )}
+                {...props}
+            />
+        </BaseTooltip.Positioner>
+    </BaseTooltip.Portal>
 ))
-TooltipContent.displayName = TooltipPrimitive.Content.displayName
+TooltipContent.displayName = "TooltipContent"
 
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }`
 
@@ -50,15 +59,11 @@ export default function TooltipPage() {
                 <TooltipProvider>
                     <div className="flex gap-4">
                         <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button>Hover me</Button>
-                            </TooltipTrigger>
+                            <TooltipTrigger render={<Button />}>Hover me</TooltipTrigger>
                             <TooltipContent>This is helpful information</TooltipContent>
                         </Tooltip>
                         <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button variant="neutral">More info</Button>
-                            </TooltipTrigger>
+                            <TooltipTrigger render={<Button variant="neutral" />}>More info</TooltipTrigger>
                             <TooltipContent side="bottom">Tooltip appears below button</TooltipContent>
                         </Tooltip>
                     </div>
@@ -83,27 +88,19 @@ export default function TooltipPage() {
                 <TooltipProvider>
                     <div className="flex flex-wrap gap-4">
                         <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button size="sm">Top</Button>
-                            </TooltipTrigger>
+                            <TooltipTrigger render={<Button size="sm" />}>Top</TooltipTrigger>
                             <TooltipContent side="top">Tooltip on top</TooltipContent>
                         </Tooltip>
                         <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button size="sm">Bottom</Button>
-                            </TooltipTrigger>
+                            <TooltipTrigger render={<Button size="sm" />}>Bottom</TooltipTrigger>
                             <TooltipContent side="bottom">Tooltip on bottom</TooltipContent>
                         </Tooltip>
                         <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button size="sm">Left</Button>
-                            </TooltipTrigger>
+                            <TooltipTrigger render={<Button size="sm" />}>Left</TooltipTrigger>
                             <TooltipContent side="left">Tooltip on left</TooltipContent>
                         </Tooltip>
                         <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button size="sm">Right</Button>
-                            </TooltipTrigger>
+                            <TooltipTrigger render={<Button size="sm" />}>Right</TooltipTrigger>
                             <TooltipContent side="right">Tooltip on right</TooltipContent>
                         </Tooltip>
                     </div>
@@ -144,8 +141,8 @@ export default function RootLayout({ children }) {
 
             <div className="space-y-4">
                 <h2 className="text-2xl font-bold border-b-2 border-border pb-2">Installation</h2>
-                <p className="text-black mb-2">Install Radix UI dependency:</p>
-                <CodeBlock code="npm install @radix-ui/react-tooltip" language="bash" />
+                <p className="text-black mb-2">Install dependency:</p>
+                <CodeBlock code="npm install @base-ui/react" language="bash" />
                 <p className="text-black mb-2">Copy the component code into <code className="bg-neutral-200 px-2 py-1 rounded">components/ui/tooltip.tsx</code>:</p>
                 <CodeBlock code={tooltipCode} />
             </div>

@@ -5,32 +5,39 @@ import { Button } from "@/components/ui/button"
 import { ComponentPreview } from "@/components/docs/component-preview"
 import { CodeBlock } from "@/components/docs/code-block"
 
-const popoverCode = `import * as React from "react"
-import * as PopoverPrimitive from "@radix-ui/react-popover"
+const popoverCode = `"use client"
+
+import * as React from "react"
+import { Popover as BasePopover } from "@base-ui/react/popover"
 import { cn } from "@/lib/utils"
 
-const Popover = PopoverPrimitive.Root
+const Popover = BasePopover.Root
 
-const PopoverTrigger = PopoverPrimitive.Trigger
+const PopoverTrigger = BasePopover.Trigger
+
+type PopoverContentProps = React.ComponentPropsWithoutRef<typeof BasePopover.Popup> & {
+    align?: "start" | "center" | "end"
+    sideOffset?: number
+}
 
 const PopoverContent = React.forwardRef<
-  React.ComponentRef<typeof PopoverPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
+    React.ComponentRef<typeof BasePopover.Popup>,
+    PopoverContentProps
 >(({ className, align = "center", sideOffset = 4, ...props }, ref) => (
-  <PopoverPrimitive.Portal>
-    <PopoverPrimitive.Content
-      ref={ref}
-      align={align}
-      sideOffset={sideOffset}
-      className={cn(
-        "z-50 w-72 rounded-base border-2 border-black bg-white p-4 text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-        className
-      )}
-      {...props}
-    />
-  </PopoverPrimitive.Portal>
+    <BasePopover.Portal>
+        <BasePopover.Positioner sideOffset={sideOffset} align={align}>
+            <BasePopover.Popup
+                ref={ref}
+                className={cn(
+                    "z-50 w-72 rounded-base border-2 border-border bg-bw p-4 text-text shadow-brutal outline-none transition-[transform,scale,opacity] data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0",
+                    className
+                )}
+                {...props}
+            />
+        </BasePopover.Positioner>
+    </BasePopover.Portal>
 ))
-PopoverContent.displayName = PopoverPrimitive.Content.displayName
+PopoverContent.displayName = "PopoverContent"
 
 export { Popover, PopoverTrigger, PopoverContent }`
 
@@ -49,9 +56,7 @@ export default function PopoverPage() {
 
             <ComponentPreview code={popoverCode}>
                 <Popover>
-                    <PopoverTrigger asChild>
-                        <Button>Open Popover</Button>
-                    </PopoverTrigger>
+                    <PopoverTrigger render={<Button />}>Open Popover</PopoverTrigger>
                     <PopoverContent>
                         <div className="grid gap-4">
                             <div className="space-y-2">
@@ -85,7 +90,7 @@ export default function PopoverPage() {
 
             <div className="space-y-4">
                 <h2 className="text-2xl font-bold">Installation</h2>
-                <CodeBlock code={`npm install @radix-ui/react-popover`} language="bash" />
+                <CodeBlock code={`npm install @base-ui/react`} language="bash" />
             </div>
 
             <div className="space-y-4">

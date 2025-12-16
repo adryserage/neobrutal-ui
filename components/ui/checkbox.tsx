@@ -1,29 +1,31 @@
 "use client"
 
 import * as React from "react"
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
+import { Checkbox as BaseCheckbox } from "@base-ui/react/checkbox"
 import { CheckIcon } from "@phosphor-icons/react"
 import { cn } from "@/lib/utils"
 
+type CheckboxProps = React.ComponentPropsWithoutRef<typeof BaseCheckbox.Root>
+
 const Checkbox = React.forwardRef<
-    React.ComponentRef<typeof CheckboxPrimitive.Root>,
-    React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
+    React.ComponentRef<typeof BaseCheckbox.Root>,
+    CheckboxProps
 >(({ className, ...props }, ref) => (
-    <CheckboxPrimitive.Root
+    <BaseCheckbox.Root
         ref={ref}
         className={cn(
-            "peer h-5 w-5 shrink-0 rounded-base border-2 border-border ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-main data-[state=checked]:text-black",
+            "peer h-5 w-5 shrink-0 rounded-base border-2 border-border ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-checked:bg-main data-checked:text-black",
             className
         )}
         {...props}
     >
-        <CheckboxPrimitive.Indicator
-            className={cn("flex items-center justify-center text-current")}
+        <BaseCheckbox.Indicator
+            className={cn("flex items-center justify-center text-current data-unchecked:hidden")}
         >
             <CheckIcon weight="bold" className="h-3.5 w-3.5" />
-        </CheckboxPrimitive.Indicator>
-    </CheckboxPrimitive.Root>
+        </BaseCheckbox.Indicator>
+    </BaseCheckbox.Root>
 ))
-Checkbox.displayName = CheckboxPrimitive.Root.displayName
+Checkbox.displayName = "Checkbox"
 
 export { Checkbox }
