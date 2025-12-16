@@ -1,0 +1,231 @@
+import path from "path"
+import fs from "fs-extra"
+import { Command } from "commander"
+import prompts from "prompts"
+import { z } from "zod"
+import { logger, highlighter } from "../utils/logger.js"
+import { spinner } from "../utils/spinner.js"
+import { handleError } from "../utils/errors.js"
+import { getConfig, resolveImport, type Config } from "../utils/config.js"
+import {
+    getRegistryIndex,
+    getRegistryItems,
+    resolveRegistryDependencies,
+    type RegistryItem,
+} from "../utils/registry.js"
+import { runInit } from "./init.js"
+
+const addOptionsSchema = z.object({
+    components: z.array(z.string()).optional(),
+    cwd: z.string(),
+    yes: z.boolean(),
+    overwrite: z.boolean(),
+    all: z.boolean(),
+})
+
+export const add = new Command()
+    .name("add")
+    .description("add components to your project")
+    .argument("[components...]", "the components to add")
+    .option(
+        "-c, --cwd <cwd>",
+        "the working directory. defaults to the current directory.",
+        process.cwd()
+    )
+    .option("-y, --yes", "skip confirmation prompt.", false)
+    .option("-o, --overwrite", "overwrite existing files.", false)
+    .option("-a, --all", "add all available components.", false)
+    .action(async (components, opts) => {
+        try {
+            const options = addOptionsSchema.parse({
+                components,
+                cwd: path.resolve(opts.cwd),
+                yes: opts.yes,
+                overwrite: opts.overwrite,
+                all: opts.all,
+            })
+
+            await runAdd(options)
+        } catch (error) {
+            handleError(error)
+        }
+    })
+
+async function runAdd(options: z.infer<typeof addOptionsSchema>): Promise<void> {
+    const { cwd, overwrite, all } = options
+    let { components } = options
+
+    let config = await getConfig(cwd)
+
+    if (!config) {
+        logger.warn(
+            `No ${highlighter.info("components.json")} file found at ${highlighter.info(cwd)}.`
+        )
+        const { proceed } = await prompts({
+            type: "confirm",
+            name: "proceed",
+            message: "Would you like to initialize the project first?",
+            initial: true,
+        })
+
+        if (!proceed) {
+            logger.info("Add cancelled.")
+            return
+        }
+
+        await runInit({ cwd, yes: false, force: false })
+        config = await getConfig(cwd)
+
+        if (!config) {
+            logger.error("Failed to initialize project.")
+            return
+        }
+    }
+
+    const registryIndex = await getRegistryIndex()
+
+    if (all) {
+        components = registryIndex
+            .filter((item) => item.type === "registry:ui")
+            .map((item) => item.name)
+    }
+
+    if (!components || components.length === 0) {
+        const { selectedComponents } = await prompts({
+            type: "multiselect",
+            name: "selectedComponents",
+            message: "Which components would you like to add?",
+            hint: "Space to select. A to toggle all. Enter to submit.",
+            instructions: false,
+            choices: registryIndex
+                .filter((item) => item.type === "registry:ui")
+                .map((item) => ({
+                    title: item.name,
+                    value: item.name,
+                    description: item.description,
+                })),
+        })
+
+        if (!selectedComponents?.length) {
+            logger.info("No components selected. Exiting.")
+            return
+        }
+
+        components = selectedComponents
+    }
+
+    if (!components || components.length === 0) {
+        logger.info("No components selected. Exiting.")
+        return
+    }
+
+    const invalidComponents = components.filter(
+        (component) => !registryIndex.find((item) => item.name === component)
+    )
+
+    if (invalidComponents.length > 0) {
+        logger.error(
+            `The following components are not available: ${invalidComponents.join(", ")}`
+        )
+        logger.info("Run `npx neobrutal-ui list` to see all available components.")
+        return
+    }
+
+    const addSpinner = spinner("Fetching components...").start()
+
+    try {
+        const items = await getRegistryItems(components)
+        const resolvedItems = await resolveRegistryDependencies(items)
+
+        addSpinner.succeed(`Found ${resolvedItems.length} component(s).`)
+
+        const npmDependencies = new Set<string>()
+        const filesToWrite: Array<{ path: string; content: string }> = []
+
+        for (const item of resolvedItems) {
+            if (item.dependencies) {
+                item.dependencies.forEach((dep) => npmDependencies.add(dep))
+            }
+
+            for (const file of item.files) {
+                const targetPath = resolveFilePath(cwd, config, file.path)
+
+                if (await fs.pathExists(targetPath)) {
+                    if (!overwrite) {
+                        const { shouldOverwrite } = await prompts({
+                            type: "confirm",
+                            name: "shouldOverwrite",
+                            message: `File ${highlighter.info(path.relative(cwd, targetPath))} already exists. Overwrite?`,
+                            initial: false,
+                        })
+
+                        if (!shouldOverwrite) {
+                            logger.info(`Skipping ${file.path}`)
+                            continue
+                        }
+                    }
+                }
+
+                filesToWrite.push({
+                    path: targetPath,
+                    content: file.content,
+                })
+            }
+        }
+
+        const writeSpinner = spinner("Writing files...").start()
+
+        for (const file of filesToWrite) {
+            await fs.ensureDir(path.dirname(file.path))
+            await fs.writeFile(file.path, file.content, "utf-8")
+        }
+
+        writeSpinner.succeed(`Wrote ${filesToWrite.length} file(s).`)
+
+        if (npmDependencies.size > 0) {
+            logger.break()
+            logger.info("Don't forget to install the following dependencies:")
+            logger.break()
+            logger.log(`  npm install ${Array.from(npmDependencies).join(" ")}`)
+            logger.break()
+        }
+
+        logger.break()
+        logger.success(`${highlighter.success("Success!")} Components added.`)
+        logger.break()
+
+        const addedComponents = resolvedItems.map((item) => item.name)
+        logger.info(`Added: ${addedComponents.join(", ")}`)
+    } catch (error) {
+        addSpinner.fail("Failed to add components.")
+        throw error
+    }
+}
+
+function resolveFilePath(cwd: string, config: Config, filePath: string): string {
+    if (filePath.startsWith("components/ui/")) {
+        const uiAlias = config.aliases.ui || `${config.aliases.components}/ui`
+        return path.resolve(
+            cwd,
+            filePath.replace("components/ui/", uiAlias.replace("@/", "") + "/")
+        )
+    }
+
+    if (filePath.startsWith("lib/")) {
+        const libAlias = config.aliases.lib || "@/lib"
+        return path.resolve(
+            cwd,
+            filePath.replace("lib/", libAlias.replace("@/", "") + "/")
+        )
+    }
+
+    if (filePath.startsWith("hooks/")) {
+        const hooksAlias = config.aliases.hooks || "@/hooks"
+        return path.resolve(
+            cwd,
+            filePath.replace("hooks/", hooksAlias.replace("@/", "") + "/")
+        )
+    }
+
+    return path.resolve(cwd, filePath)
+}

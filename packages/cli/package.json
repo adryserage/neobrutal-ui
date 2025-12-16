@@ -1,0 +1,56 @@
+{
+    "name": "neobrutal-ui",
+    "version": "0.1.0",
+    "description": "CLI for adding NeoBrutal UI components to your project",
+    "type": "module",
+    "license": "MIT",
+    "author": {
+        "name": "Bridget Amana",
+        "url": "https://github.com/Bridgetamana"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Bridgetamana/neobrutal-ui"
+    },
+    "homepage": "https://neobrutalism.dev",
+    "keywords": [
+        "neobrutalism",
+        "ui",
+        "components",
+        "react",
+        "tailwindcss",
+        "radix-ui",
+        "cli"
+    ],
+    "bin": {
+        "neobrutal-ui": "./dist/index.js"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "typecheck": "tsc --noEmit",
+        "clean": "rimraf dist"
+    },
+    "dependencies": {
+        "chalk": "^5.3.0",
+        "commander": "^12.1.0",
+        "fs-extra": "^11.2.0",
+        "ora": "^8.1.0",
+        "prompts": "^2.4.2",
+        "zod": "^3.23.8"
+    },
+    "devDependencies": {
+        "@types/fs-extra": "^11.0.4",
+        "@types/node": "^20.17.0",
+        "@types/prompts": "^2.4.9",
+        "rimraf": "^6.0.1",
+        "tsup": "^8.3.5",
+        "typescript": "^5.6.3"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}

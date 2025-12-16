@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -19,6 +20,11 @@
 
 # production
 /build
+
+# cli package
+packages/cli/node_modules
+packages/cli/dist
+packages/cli/package-lock.json
 
 # misc
 .DS_Store

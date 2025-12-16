@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination",
+  "type": "registry:ui",
+  "description": "Pagination with page navigation and ellipsis.",
+  "dependencies": [
+    "@phosphor-icons/react"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "components/ui/pagination.tsx",
+      "content": "import * as React from \"react\"\r\nimport { cn } from \"@/lib/utils\"\r\n\r\nexport type PaginationProps = React.HTMLAttributes<HTMLDivElement>\r\n\r\nconst Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(\r\n    ({ className, ...props }, ref) => (\r\n        <nav\r\n            ref={ref}\r\n            aria-label=\"Pagination\"\r\n            className={cn(\"flex items-center justify-center gap-1\", className)}\r\n            {...props}\r\n        />\r\n    )\r\n)\r\nPagination.displayName = \"Pagination\"\r\n\r\nexport type PaginationItemProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {\r\n    isActive?: boolean\r\n}\r\n\r\nconst PaginationItem = React.forwardRef<HTMLButtonElement, PaginationItemProps>(\r\n    ({ className, isActive, ...props }, ref) => (\r\n        <button\r\n            ref={ref}\r\n            className={cn(\r\n                \"inline-flex h-10 w-10 items-center justify-center rounded-base border-2 border-border text-sm font-bold transition-all\",\r\n                isActive\r\n                    ? \"bg-main text-black shadow-brutal hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none\"\r\n                    : \"bg-bw text-text hover:bg-neutral-100\"\r\n            )}\r\n            aria-current={isActive ? \"page\" : undefined}\r\n            {...props}\r\n        />\r\n    )\r\n)\r\nPaginationItem.displayName = \"PaginationItem\"\r\n\r\nexport { Pagination, PaginationItem }\r\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -1,0 +1,370 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry.json",
+    "name": "neobrutal-ui",
+    "homepage": "https://neobrutalism.dev",
+    "items": [
+        {
+            "name": "accordion",
+            "type": "registry:ui",
+            "description": "A vertically stacked set of interactive headings that reveal content sections.",
+            "dependencies": [
+                "@radix-ui/react-accordion",
+                "@phosphor-icons/react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/accordion.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "alert",
+            "type": "registry:ui",
+            "description": "Displays a callout for user attention with neobrutalist styling.",
+            "dependencies": [
+                "@phosphor-icons/react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/alert.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "avatar",
+            "type": "registry:ui",
+            "description": "An image element with a fallback for representing the user.",
+            "dependencies": [
+                "@radix-ui/react-avatar"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/avatar.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "badge",
+            "type": "registry:ui",
+            "description": "Displays a badge or label with neobrutalist styling.",
+            "dependencies": [
+                "class-variance-authority"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/badge.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "breadcrumb",
+            "type": "registry:ui",
+            "description": "Displays the path to the current resource using a hierarchy of links.",
+            "dependencies": [
+                "@radix-ui/react-slot",
+                "@phosphor-icons/react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/breadcrumb.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "button",
+            "type": "registry:ui",
+            "description": "Displays a button or a component that looks like a button with neobrutalist styling.",
+            "dependencies": [
+                "@radix-ui/react-slot",
+                "class-variance-authority"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/button.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "card",
+            "type": "registry:ui",
+            "description": "Displays a card with header, content, and footer sections.",
+            "dependencies": [],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/card.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "checkbox",
+            "type": "registry:ui",
+            "description": "A control that allows the user to toggle between checked and not checked.",
+            "dependencies": [
+                "@radix-ui/react-checkbox",
+                "@phosphor-icons/react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/checkbox.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "dialog",
+            "type": "registry:ui",
+            "description": "A window overlaid on the primary window with neobrutalist styling.",
+            "dependencies": [
+                "@radix-ui/react-dialog",
+                "@phosphor-icons/react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/dialog.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "input",
+            "type": "registry:ui",
+            "description": "Displays a form input field with neobrutalist styling.",
+            "dependencies": [],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/input.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "label",
+            "type": "registry:ui",
+            "description": "Renders an accessible label associated with controls.",
+            "dependencies": [
+                "@radix-ui/react-label",
+                "class-variance-authority"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/label.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "pagination",
+            "type": "registry:ui",
+            "description": "Pagination with page navigation and ellipsis.",
+            "dependencies": [
+                "@phosphor-icons/react"
+            ],
+            "registryDependencies": [
+                "button"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/pagination.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "popover",
+            "type": "registry:ui",
+            "description": "Displays rich content in a portal, triggered by a button.",
+            "dependencies": [
+                "@radix-ui/react-popover"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/popover.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "progress",
+            "type": "registry:ui",
+            "description": "Displays an indicator showing the completion progress of a task.",
+            "dependencies": [
+                "@radix-ui/react-progress"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/progress.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "radio-group",
+            "type": "registry:ui",
+            "description": "A set of checkable buttons where only one can be checked at a time.",
+            "dependencies": [
+                "@radix-ui/react-radio-group",
+                "@phosphor-icons/react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/radio-group.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "select",
+            "type": "registry:ui",
+            "description": "Displays a list of options for the user to pick from.",
+            "dependencies": [
+                "@radix-ui/react-select",
+                "@phosphor-icons/react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/select.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "skeleton",
+            "type": "registry:ui",
+            "description": "Use to show a placeholder while content is loading.",
+            "dependencies": [],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/skeleton.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "slider",
+            "type": "registry:ui",
+            "description": "An input where the user selects a value from within a given range.",
+            "dependencies": [
+                "@radix-ui/react-slider"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/slider.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "sonner",
+            "type": "registry:ui",
+            "description": "An opinionated toast component with neobrutalist styling.",
+            "dependencies": [
+                "sonner"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/sonner.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "switch",
+            "type": "registry:ui",
+            "description": "A control that allows the user to toggle between on and off.",
+            "dependencies": [
+                "@radix-ui/react-switch"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/switch.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "tabs",
+            "type": "registry:ui",
+            "description": "A set of layered sections of content displayed one at a time.",
+            "dependencies": [
+                "@radix-ui/react-tabs"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/tabs.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "textarea",
+            "type": "registry:ui",
+            "description": "Displays a form textarea with neobrutalist styling.",
+            "dependencies": [],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/textarea.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "tooltip",
+            "type": "registry:ui",
+            "description": "A popup that displays information related to an element.",
+            "dependencies": [
+                "@radix-ui/react-tooltip"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "components/ui/tooltip.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "utils",
+            "type": "registry:lib",
+            "description": "Utility functions for class name merging.",
+            "dependencies": [
+                "clsx",
+                "tailwind-merge"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "lib/utils.ts",
+                    "type": "registry:lib"
+                }
+            ]
+        }
+    ]
+}
