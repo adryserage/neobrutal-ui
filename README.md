@@ -1,14 +1,6 @@
 # NeoBrutal UI
 
-Accessible components with bold Neobrutalist styling. Copy and paste into your apps. Open source.
-
-![NeoBrutal UI](https://neobrutal-ui.vercel.app/og-image.png)
-
-## Features
-
-- **Copy-paste components** — No npm package. You own the code.
-- **Two formats** — React components (Radix UI) or plain HTML with Tailwind.
-- **Neobrutalist design** — Bold borders, hard shadows, high contrast.
+A collection of Neobrutalist components built with Radix UI and Tailwind CSS. 
 
 ## Documentation
 
@@ -29,17 +21,6 @@ Or copy the code directly from the docs.
 - Avatar
 - Badge
 - Button
-- Card
-- Checkbox
-- Dialog
-
-## Tech Stack
-
-- [Next.js 16](https://nextjs.org/)
-- [React 19](https://react.dev/)
-- [Tailwind CSS v4](https://tailwindcss.com/)
-- [Radix UI](https://www.radix-ui.com/)
-- [Phosphor Icons](https://phosphoricons.com/)
 
 ## Contributing
 
