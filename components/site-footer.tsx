@@ -2,7 +2,7 @@
 
 // Test comment for lint-staged
 
-const unused = 1;
+const unused = 2;
 
 import Link from "next/link"
 import Image from "next/image"
