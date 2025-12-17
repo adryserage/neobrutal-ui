@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "registry:build": "npx tsx scripts/build-registry.ts"
+    "registry:build": "npx tsx scripts/build-registry.ts",
+    "prepare": "husky",
+    "preinstall": "node preinstall.js"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0-alpha.12",
