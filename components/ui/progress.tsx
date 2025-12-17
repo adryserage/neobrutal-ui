@@ -25,7 +25,7 @@ const Progress = React.forwardRef<
         <BaseProgress.Track className="h-full w-full overflow-hidden">
             <BaseProgress.Indicator
                 className={cn(
-                    "h-full w-full flex-1 transition-all",
+                    "h-full w-full flex-1 transition-transform motion-reduce:transition-none",
                     variant === "destructive" ? "bg-red-400" : "bg-main"
                 )}
                 style={{ transform: `translateX(-${100 - (value || 0)}%)` }}

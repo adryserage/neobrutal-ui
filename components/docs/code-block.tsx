@@ -15,9 +15,14 @@ export function CodeBlock({ code, language = "tsx", className, ...props }: CodeB
     const [hasCopied, setHasCopied] = React.useState(false)
 
     const onCopy = () => {
-        navigator.clipboard.writeText(code)
-        setHasCopied(true)
-        setTimeout(() => setHasCopied(false), 2000)
+        try {
+            navigator.clipboard.writeText(code)
+            setHasCopied(true)
+            setTimeout(() => setHasCopied(false), 2000)
+        } catch (err) {
+            // ignore copy failures in insecure contexts
+            console.error({ err })
+        }
     }
 
     return (

@@ -96,7 +96,7 @@ const SelectContent = React.forwardRef<
             <BaseSelect.Popup
                 ref={ref}
                 className={cn(
-                    "relative z-50 max-h-96 min-w-32 overflow-hidden rounded-base border-2 border-border bg-bw text-text shadow-brutal transition-[transform,scale,opacity] data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0",
+                    "relative z-50 max-h-96 min-w-32 overflow-hidden rounded-base border-2 border-border bg-bw text-text shadow-brutal  motion-reduce:transition-none data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0",
                     position === "popper" &&
                     "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
                     className
